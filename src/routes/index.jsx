@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 
@@ -80,7 +80,7 @@ const Routes = () => {
   ];
 
   // Combine and conditionally include routes based on authentication status
-  const router = createBrowserRouter(
+  const router = createHashRouter(
     [
       {
         path: "/",
@@ -92,9 +92,6 @@ const Routes = () => {
         ],
       },
     ],
-    {
-      basename: "/usedcars",
-    }
   );
 
   // Provide the router configuration using RouterProvider
