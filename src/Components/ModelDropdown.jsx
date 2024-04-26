@@ -3,27 +3,38 @@ import axios from "axios";
 
 const ModelDropdown = (props) => {
   const [models, setModels] = useState([]);
-  const [selectedModel, setSelectedModel] = useState("");
 
   useEffect(() => {
+    console.log("the use effect")
     // Fetch available models from the API endpoint
     axios
       .get("/vehicle_models")
       .then((response) => {
         setModels(response.data);
+        // Ensure that the selectedModel is initially set if props.selectedModel exists and is valid
+        if (props.selectedModel && response.data.includes(props.selectedModel)) {
+          props.setFormData(prevFormData => ({
+            ...prevFormData,
+            model: props.selectedModel
+          }));
+        }
       })
       .catch((error) => {
         console.error("Error fetching models:", error);
       });
-  }, []);
+  }, [props.selectedModel]); // Listening to changes in props.selectedModel
 
   const handleChange = (e) => {
     const selectedValue = e.target.value;
-    setSelectedModel(selectedValue);
-    props.setFormData((prevFormData) => ({
+    console.log("selectedValue", selectedValue);
+
+    props.setFormData(prevFormData => ({
       ...prevFormData,
       model: selectedValue,
+
+
     }));
+    console.log("prevFormData", prevFormData);
   };
 
   return (
@@ -31,10 +42,9 @@ const ModelDropdown = (props) => {
       <label className="form-label">Model</label>
       <select
         className="form-select"
-        value={selectedModel}
+        value={props.selectedModel}
         onChange={handleChange}
       >
-        <option value="">Select Model</option>
         {models.map((model, index) => (
           <option key={index} value={model}>
             {model}

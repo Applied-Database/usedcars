@@ -21,6 +21,7 @@ const AllCarPostings = () => {
   };
 
   useEffect(() => {
+    console.log("the main page rerenders")
     axios
       .get("/vehicle_postings")
       .then((response) => {
@@ -35,21 +36,21 @@ const AllCarPostings = () => {
 
   return (
     <div className="container-fluid p-5">
-        <h1>Find your dream car!</h1>
+      <h1>Find your dream car!</h1>
       {/* Search bar */}
-        <form className="search d-flex mt-3">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search for car companies"
-            aria-label="Search"
-            value={searchKeyword}
-            onChange={handleInputChange}
-          />
-          <button className="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
+      <form className="search d-flex mt-3">
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Search for car companies"
+          aria-label="Search"
+          value={searchKeyword}
+          onChange={handleInputChange}
+        />
+        <button className="btn btn-outline-success" type="submit">
+          Search
+        </button>
+      </form>
       {/* Listings */}
       <div>
         {loading ? (

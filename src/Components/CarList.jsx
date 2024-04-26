@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import UpdateCarForm from "./UpdateCarForm";
 import axios from "axios";
@@ -17,10 +17,11 @@ const CarList = (props) => {
 
   const handleViewDetails = (car) => {
     setSelectedCar(car);
+    setIsUpdateModalOpen(false);
   };
 
   const handleCloseModal = () => {
-    setSelectedCar(null);
+    setSelectedCar();
   };
 
   const handleUpdate = (updatedCar) => {
@@ -28,7 +29,9 @@ const CarList = (props) => {
       car.id === updatedCar.id ? updatedCar : car
     );
     setCars(updatedCars);
+    console.log("updated cars", cars)
   };
+
 
   const handleDelete = async (id) => {
     try {
@@ -48,6 +51,7 @@ const CarList = (props) => {
       .toLowerCase()
       .includes(props.searchKeyword.toLowerCase())
   );
+
 
   return (
     <div className="container mt-5">
@@ -73,6 +77,7 @@ const CarList = (props) => {
                         className="btn btn-primary me-2"
                         onClick={() => {
                           handleViewDetails(car);
+                          handleUpdate(car)
                           setIsUpdateModalOpen(true);
                         }}
                       >

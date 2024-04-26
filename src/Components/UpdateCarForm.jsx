@@ -15,8 +15,10 @@ const UpdateCarForm = (props) => {
     image_url: props.carData.image_url,
     description: props.carData.description,
     posting_date: props.carData.posting_date,
-    model: props.carData.model,
+    model: props.carData.vehicle_model,
   });
+  console.log("the model", formData.model);
+  console.log("the car", formData.condition);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,17 +29,19 @@ const UpdateCarForm = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData)
+    console.log("on clicking submit", formData)
     e.preventDefault();
     try {
       await axios.put("/update_vehicle_posting", formData);
-      console.log("Car updated successfully");
+      console.log("Car updated successfully", formData);
       props.onUpdate(formData); // Update the car data in the parent component
       props.onClose(); // Close the update form modal
+      window.location.reload();
     } catch (error) {
       console.error("Error updating car:", error);
     }
   };
+
 
   return (
     <div className="modal-dialog modal-lg" role="document">
@@ -137,12 +141,14 @@ const UpdateCarForm = (props) => {
             </div>
             {/* Model Dropdown */}
             <ModelDropdown
+              key={formData.model}
               selectedModel={formData.model}
               setFormData={setFormData}
             />
           </div>
           <div className="modal-footer">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary"
+              onClick={props.onUpdate}>
               Update Car
             </button>
             <button
