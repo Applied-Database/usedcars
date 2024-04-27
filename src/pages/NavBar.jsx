@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
-import Logo from  "../assets/Logo.png"
+import Logo from "../assets/Logo.png"
 
 const NavBar = () => {
   const { token, user } = useAuth();
@@ -9,7 +9,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 my-0 p-0">
       <div className="container my-0">
         <Link className="navbar-brand" to="/">
-          <img src={Logo} alt="Logo" className="object-fit-scale " width="75" height="50"/>
+          <img src={Logo} alt="Logo" className="object-fit-scale " width="75" height="50" />
           <span className="m-2">CarConnect</span>
         </Link>
         <button
@@ -33,6 +33,11 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
+            {token ? (<li className="nav-item">
+              <Link className="nav-link fs-5" to="/dataviz">
+                Charts
+              </Link>
+            </li>) : (<></>)}
             {token ? (<li className="nav-item">
               <Link className="nav-link fs-5" to="/postings">
                 All Postings
@@ -60,19 +65,19 @@ const NavBar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                    <span className="fs-5 mx-2">
-                      {user ? user.firstName : ""} {user ? user.lastName : ""}
-                    </span>
-                    <img
-                      src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png"
-                      alt="User"
-                      className="rounded-circle"
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                        marginRight: "5px",
-                      }}
-                    />
+                  <span className="fs-5 mx-2">
+                    {user ? user.firstName : ""} {user ? user.lastName : ""}
+                  </span>
+                  <img
+                    src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png"
+                    alt="User"
+                    className="rounded-circle"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      marginRight: "5px",
+                    }}
+                  />
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>

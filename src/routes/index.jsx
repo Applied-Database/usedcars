@@ -13,6 +13,7 @@ import AddPosting from "../pages/AddPosting";
 import Profile from "../pages/Profile";
 import LayoutComponent from "../Components/LayoutComponent";
 import Error from "../Components/Error";
+import DataViz from "../pages/DataViz";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -58,6 +59,10 @@ const Routes = () => {
         {
           path: "/logout",
           element: <Logout />,
+        },
+        {
+          path: "/dataviz",
+          element: <DataViz />,
         },
       ],
     },
