@@ -91,8 +91,9 @@ const DataViz1 = () => {
   }
 
   return (
+    <div className="w-full p-5 m-3 my-5 bg-white shadow-lg border border-dark rounded box-border"
+      style={{ height: '400px' }}>
 
-    <div className="chart-container bg-white shadow-lg p-5 m-5 border border-dark border-3 rounded" style={{ height: '400px', width:"100%" }}>
       <h2 className="text-center">Vehicle Prices by State</h2>
       <Bar data={chartData} options={chartOptions} />
     </div>
