@@ -5,7 +5,7 @@ import axios from "axios";
 import states from "../Components/States";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
 
   const initialData = {
     email: user.email,
@@ -33,6 +33,7 @@ const Profile = () => {
     try {
       const response = await axios.put("/user_profile", formData);
       console.log("Update successful:", response.data);
+      setUser(formData);
     } catch (error) {
       console.error("Error updating profile:", error);
     }
