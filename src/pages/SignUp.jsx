@@ -18,10 +18,10 @@ const SignUp = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    email: "john.doe44@example.com",
-    first_name: "John",
-    last_name: "Doe",
-    password: "securePassword123",
+    email: "",
+    first_name: "",
+    last_name: "",
+    password: "",
     city: "Bloomington",
     state: "IN",
   });
