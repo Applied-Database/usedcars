@@ -26,7 +26,7 @@ ChartJS.register(
 
 const chartOptions = {
   responsive: true,
-  maintainAspectRatio: false, 
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: true,
@@ -62,7 +62,7 @@ const chartOptions = {
   },
 };
 
-const DataViz = () => {
+const DataViz1 = () => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
@@ -91,11 +91,12 @@ const DataViz = () => {
   }
 
   return (
-    <div className="bg-white shadow-lg p-5 m-5 border border-dark border-3 rounded" style={{ height: '400px', width:"100%" }}>
+
+    <div className="chart-container bg-white shadow-lg p-5 m-5 border border-dark border-3 rounded" style={{ height: '400px', width:"100%" }}>
       <h2 className="text-center">Vehicle Prices by State</h2>
       <Bar data={chartData} options={chartOptions} />
     </div>
   );
 };
 
-export default DataViz;
+export default DataViz1;

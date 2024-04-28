@@ -34,7 +34,7 @@ const NavBar = () => {
               </Link>
             </li>
             {token ? (<li className="nav-item">
-              <Link className="nav-link fs-5" to="/dataviz">
+              <Link className="nav-link fs-5" to="/chart">
                 Charts
               </Link>
             </li>) : (<></>)}
